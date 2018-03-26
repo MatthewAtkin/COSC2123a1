@@ -16,7 +16,7 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
 	 * Contructs empty graph.
 	 */
     public AdjMatrix() {
-    	// Implement me!
+    	// Implement me!!
     } // end of AdjMatrix()
     
     
