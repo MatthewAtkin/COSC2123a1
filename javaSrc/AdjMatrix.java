@@ -106,7 +106,11 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
 	
     
     public void printVertices(PrintWriter os) {
-        // Implement me!
+        
+        for(int i = 0; i < vertices.size(); i++)
+        {
+        	PrintWriter.print(vertices.indexOf(i) + " ");
+        }
     } // end of printVertices()
 	
     
