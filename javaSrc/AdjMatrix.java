@@ -26,7 +26,7 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
     
     public void addVertex(T vertLabel) {
 		if(vertices.indexOf(vertLabel) != -1){
-			return; //yeah		
+			return; //yeah yeah	
 		}
 			
 		matrix.add(new ArrayList<Boolean>());
