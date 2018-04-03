@@ -121,7 +121,7 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
         
         for(int i = 0; i < vertices.size(); i++)
         {
-        	os.print(vertices.indexOf(i) + " ");
+        	os.print(vertices.get(i) + " ");
         }
 
 		os.println();
