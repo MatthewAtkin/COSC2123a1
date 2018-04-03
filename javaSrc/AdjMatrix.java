@@ -123,11 +123,20 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
         {
         	os.print(vertices.indexOf(i) + " ");
         }
+
+		os.println();
     } // end of printVertices()
 	
     
     public void printEdges(PrintWriter os) {
-        // Implement me!
+		for(int i = 0; i < vertices.size(); i++){
+			for(int j = 0; j < vertices.size(); j++){
+				if(matrix.get(i).get(j)){
+					os.println(vertices.get(i) + " " + vertices.get(j));
+				}
+			}
+		}
+		 // Implement me!
     } // end of printEdges()
     
     
