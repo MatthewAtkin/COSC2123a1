@@ -84,7 +84,7 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
     
     public void removeVertex(T vertLabel) {
 		if(vertices.indexOf(vertLabel) == -1){
-			System.err.out(vertLabel + "does not exist");
+			System.err.println(vertLabel + "does not exist");
 			return;
 		}
 		
@@ -121,7 +121,7 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
         
         for(int i = 0; i < vertices.size(); i++)
         {
-        	PrintWriter.print(vertices.indexOf(i) + " ");
+        	os.print(vertices.indexOf(i) + " ");
         }
     } // end of printVertices()
 	
