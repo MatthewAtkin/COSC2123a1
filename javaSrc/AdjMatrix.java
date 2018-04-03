@@ -83,7 +83,19 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
     
     
     public void removeVertex(T vertLabel) {
-        // Implement me!
+		if(vertices.indexOf(vertLabel) == -1){
+			System.err.out(vertLabel + "does not exist");
+			return;
+		}
+		
+		for(int i = 0; i < vertices.size(); i++){
+			matrix.get(i).remove(vertices.indexOf(vertLabel));
+		}
+
+		matrix.remove(vertices.indexOf(vertLabel));
+
+		vertices.remove(vertLabel);
+		 // Implement me!
     } // end of removeVertex()
 	
     
