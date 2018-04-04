@@ -159,7 +159,7 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
 			vertex = vertQueue.remove();
 			distance = distQueue.remove();
 
-			if(vertex == vertLabel2){
+			if(vertex.equals(vertLabel2)){
 				return distance;
 			}
 			
