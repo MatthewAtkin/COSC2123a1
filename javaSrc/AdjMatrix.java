@@ -180,5 +180,3 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
     } // end of shortestPathDistance()
     
 } // end of class AdjMatrix */
-About
-Press h to open a hovercard with more details.
