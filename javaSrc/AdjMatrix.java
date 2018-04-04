@@ -140,8 +140,8 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
     } // end of printEdges()
     
     
-    public int shortestPathDistance(T vertLabel1, T vertLabel2) {
-    	// Implement me!
+    public int shortestPathDistance(T vertLabel1, T vertLabel2) {2}
+    	/* Implement me!
 		boolean[] visited = new boolean[vertices.size()];
 		Queue<T> vertQueue = new LinkedList<T>();
 		Queue<Integer> distQueue = new LinkedList<Integer>();
@@ -179,6 +179,6 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
         return disconnectedDist;    	
     } // end of shortestPathDistance()
     
-} // end of class AdjMatrix
+} // end of class AdjMatrix */
 About
 Press h to open a hovercard with more details.
