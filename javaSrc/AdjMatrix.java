@@ -140,7 +140,7 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
     } // end of printEdges()
     
     
-    public int shortestPathDistance(T vertLabel1, T vertLabel2) {2}
+    public int shortestPathDistance(T vertLabel1, T vertLabel2) {return 2}
     	/* Implement me!
 		boolean[] visited = new boolean[vertices.size()];
 		Queue<T> vertQueue = new LinkedList<T>();
