@@ -60,9 +60,38 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
     
     
     public int shortestPathDistance(T vertLabel1, T vertLabel2) {
-    	// Implement me!
-    	
-        // if we reach this point, source and target are disconnected
+    			boolean[] visited = new boolean[vertices.size()];
+		Queue<T> vertQueue = new LinkedList<T>();
+		Queue<Integer> distQueue = new LinkedList<Integer>();
+		T vertex;
+		int distance;
+		
+		for(int i = 0; i < vertices.size(); i++){
+			visited[i] = false;
+		}
+
+		vertQueue.add(vertLabel1);
+		distQueue.add(0);
+
+		while(vertQueue.peek() != null){
+			vertex = vertQueue.remove();
+			distance = distQueue.remove();
+
+			if(vertex == vertLabel2){
+				return distance;
+			}
+			
+			visited[vertices.indexOf(vertex)] = true;
+
+			for(int i = 0; i < vertices.size(); i++){
+				if(matrix.get(vertices.indexOf(vertex)).get(i)){
+					if(!visited[i]){		
+						vertQueue.add(vertices.get(i));
+						distQueue.add(distance + 1);
+					}			
+				}
+			}
+		}
         return disconnectedDist;    	
     } // end of shortestPathDistance()
     
