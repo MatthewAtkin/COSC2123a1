@@ -11,28 +11,85 @@ import java.util.*;
  */
 public class IndMatrix <T extends Object> implements FriendshipGraph<T>
 {
-
+	ArrayList<ArrayList<Boolean>> matrix;
+	ArrayList<T> vertices;
+	int edgeCount;
+		
 	/**
 	 * Contructs empty graph.
 	 */
     public IndMatrix() {
+		matrix = new ArrayList<ArrayList<Boolean>>();
+		vertices = new ArrayList<T>();
+		edgeCount = 0;
     	// Implement me!
     } // end of IndMatrix()
     
     
     public void addVertex(T vertLabel) {
+		if(vertices.indexOf(vertLabel) != -1){
+			return;
+		}
+
+		vertices.add(vertLabel);
         // Implement me!
     } // end of addVertex()
 	
     
     public void addEdge(T srcLabel, T tarLabel) {
+		if(vertices.indexOf(srcLabel) == -1){
+			System.err.println(srcLabel + " does not exist");
+			return;
+		}
+	
+		if(vertices.indexOf(tarLabel) == -1){
+			System.err.println(tarLabel + " does not exist");
+			return;
+		}
+
+		matrix.add(new ArrayList<Boolean>());
+
+		for(int i = vertices.size(); i > 0; i--){
+			if((vertices.get(i) == srcLabel) || (vertices.get(i) == tarLabel)){
+				matrix.get(edgeCount).add(true);
+			}else{
+				matrix.get(edgeCount).add(false);
+			}
+		}
+
+		edgeCount++;
+			
         // Implement me!
     } // end of addEdge()
 	
 
     public ArrayList<T> neighbours(T vertLabel) {
         ArrayList<T> neighbours = new ArrayList<T>();
-        
+		boolean[] connection = new boolean[edgeCount];
+		
+		if(vertices.indexOf(vertLabel) == -1){
+			System.err.println(vertLabel + " does not exist);
+			return neighbours;
+		}
+
+		for(int i = 0; i < edgeCount; i++){
+			if(matrix.get(i).get(vertices.indexOf(vertLabel)){
+				connection[i] = true;
+			}else{
+				connection[i] = false;
+			}
+		}	
+
+		for(int i = 0; i < edgeCount; i++){
+			if(connection[i]){
+				for(int j = 0; j < vertices.size(); j++){
+					if(matrix.get(i).get(j) && vertices.get(j) != vertLabel){
+						neighbours.add(vertices.get(j));
+						j = vertices.size();
+					}
+				}
+			}
+		}
         // Implement me!
         
         return neighbours;
