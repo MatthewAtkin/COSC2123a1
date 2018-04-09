@@ -49,7 +49,7 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
 
 		matrix.add(new ArrayList<Boolean>());
 
-		for(int i = vertices.size(); i > 0; i--){
+		for(int i = vertices.size() - 1; i > 0; i--){
 			if((vertices.get(i) == srcLabel) || (vertices.get(i) == tarLabel)){
 				matrix.get(edgeCount).add(true);
 			}else{
@@ -65,15 +65,16 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
 
     public ArrayList<T> neighbours(T vertLabel) {
         ArrayList<T> neighbours = new ArrayList<T>();
-		boolean[] connection = new boolean[edgeCount];
+		/*boolean[] connection = new boolean[edgeCount];
 		
 		if(vertices.indexOf(vertLabel) == -1){
-			System.err.println(vertLabel + " does not exist);
+			System.err.println(vertLabel + " does not exist");
 			return neighbours;
 		}
 
 		for(int i = 0; i < edgeCount; i++){
-			if(matrix.get(i).get(vertices.indexOf(vertLabel)){
+			System.out.println(i + " " + edgeCount);
+			if(matrix.get(i).get(vertices.indexOf(vertLabel))){
 				connection[i] = true;
 			}else{
 				connection[i] = false;
@@ -89,7 +90,7 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
 					}
 				}
 			}
-		}
+		}*/
         // Implement me!
         
         return neighbours;
@@ -103,7 +104,7 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
 		}
 
 		for(int i = 0; i < edgeCount; i++){
-			if(matrix.get(i).get(vertices.indexOf(vertLabel)))
+			if(matrix.get(i).get(vertices.indexOf(vertLabel))){
 				matrix.remove(i);
 				edgeCount--;
 				i--;
@@ -132,9 +133,9 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
 		}
 
 		for(int i = 0; i < edgeCount; i++){
-			if(matrix.get(i).get(vertices.indexOf(srcLabel)){
-				if(matrix.get(i).get(vertices.indexOf(tarLabel)){
-					matrix.remove(i)
+			if(matrix.get(i).get(vertices.indexOf(srcLabel))){
+				if(matrix.get(i).get(vertices.indexOf(tarLabel))){
+					matrix.remove(i);
 					edgeCount--;
 					return;
 				}
