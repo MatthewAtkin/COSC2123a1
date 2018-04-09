@@ -97,21 +97,80 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
     
     
     public void removeVertex(T vertLabel) {
+		if(vertices.indexOf(vertLabel) == -1){
+			System.err.println(vertLabel + " does not exist");
+			return;
+		}
+
+		for(int i = 0; i < edgeCount; i++){
+			if(matrix.get(i).get(vertices.indexOf(vertLabel)))
+				matrix.remove(i);
+				edgeCount--;
+				i--;
+			}else{
+				matrix.get(i).remove(vertices.indexOf(vertLabel));
+			}
+		}
+
+		vertices.remove(vertLabel);
+
+		
         // Implement me!
     } // end of removeVertex()
 	
     
     public void removeEdge(T srcLabel, T tarLabel) {
+
+		if(vertices.indexOf(srcLabel) == -1){
+			System.err.println(srcLabel + " does not exist");
+			return;
+		}
+
+		if(vertices.indexOf(tarLabel) == -1){
+			System.err.println(tarLabel + " does not exist");
+			return;
+		}
+
+		for(int i = 0; i < edgeCount; i++){
+			if(matrix.get(i).get(vertices.indexOf(srcLabel)){
+				if(matrix.get(i).get(vertices.indexOf(tarLabel)){
+					matrix.remove(i)
+					edgeCount--;
+					return;
+				}
+			}
+		}	
+		
         // Implement me!
     } // end of removeEdges()
 	
     
     public void printVertices(PrintWriter os) {
+		for(int i = 0; i < vertices.size(); i++){
+			os.print(vertices.get(i) + " ");
+		}
+		os.println();
         // Implement me!
     } // end of printVertices()
 	
     
     public void printEdges(PrintWriter os) {
+		boolean first = true;
+
+		for(int i = 0; i < edgeCount; i++){
+			for(int j = 0; j < vertices.size(); j++){
+				if(matrix.get(i).get(j)){
+					if(first){
+						os.print(vertices.get(i) + " ");
+						first = false;
+					}else{
+						os.println(vertices.get(i));
+						first = true;
+						j = vertices.size();
+					}
+				}
+			}
+		}
         // Implement me!
     } // end of printEdges()
     
