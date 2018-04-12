@@ -159,6 +159,7 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
 			vertex = vertQueue.remove();
 			distance = distQueue.remove();
 
+
 			if(vertex.equals(vertLabel2)){
 				return distance;
 			}
@@ -179,4 +180,4 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
         return disconnectedDist;    	
     } // end of shortestPathDistance()
     
-} // end of class AdjMatrix
+} // end of class AdjMatrix 
