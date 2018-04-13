@@ -49,6 +49,44 @@ public class GraphTester
 		String line;
 		int lineNum = 1;
 		boolean bQuit = false;
+
+		double startTimeVertex = 0;
+		double endTimeVertex = 0; 
+		double firstVertex = -1;
+		double lastVertex = -1;
+		double vertexTotal = 0;
+		int numVertex = 0;
+
+		double startTimeEdge = 0;
+		double endTimeEdge = 0; 
+		double firstEdge = -1;
+		double lastEdge = -1;
+		double edgeTotal = 0;
+		int numEdge = 0;
+
+		double startTimeNeigh = 0;
+		double endTimeNeigh = 0; 
+		double neighTotal = 0;
+		int numNeigh = 0;
+
+		double startTimePath = 0;
+		double endTimePath = 0; 
+		double PathTotal = 0;
+		int numPath = 0;
+
+		double startTimeVertexR = 0;
+		double endTimeVertexR = 0; 
+		double firstVertexR = -1;
+		double lastVertexR = -1;
+		double vertexTotalR = 0;
+		int numVertexR = 0;
+
+		double startTimeEdgeR = 0;
+		double endTimeEdgeR = 0; 
+		double firstEdgeR = -1;
+		double lastEdgeR = -1;
+		double edgeTotalR = 0;
+		int numEdgeR = 0;
 		
 		// continue reading in commands until we either receive the quit signal or there are no more input commands
 		while (!bQuit && (line = inReader.readLine()) != null) {
@@ -69,7 +107,16 @@ public class GraphTester
 					// add vertex
 					case "AV":
 						if (tokens.length == 2) {
+							startTimeVertex = System.nanoTime();
+							
 							graph.addVertex(tokens[1]);
+
+							endTimeVertex = System.nanoTime();
+							lastVertex = endTimeVertex - startTimeVertex;
+							if (firstVertex == -1) 
+								firstVertex = lastVertex;
+							vertexTotal += lastVertex;
+							numVertex++;
 						}
 						else {
 							System.err.println(lineNum + ": incorrect number of tokens.");
@@ -78,7 +125,16 @@ public class GraphTester
 	                // add edge
 					case "AE":
 						if (tokens.length == 3) {
+							startTimeEdge = System.nanoTime();
+
 							graph.addEdge(tokens[1], tokens[2]);
+
+							endTimeEdge = System.nanoTime();
+							lastEdge = endTimeEdge - startTimeEdge;
+							if (firstEdge == -1) 
+								firstEdge = lastEdge;
+							edgeTotal += lastEdge;
+							numEdge++;
 						}
 						else {
 							System.err.println(lineNum + ": incorrect number of tokens.");
@@ -87,7 +143,12 @@ public class GraphTester
 					// neighbourhood
 					case "N":
 						if (tokens.length == 2) {
+							startTimeNeigh = System.nanoTime();
 							ArrayList<String> neighbours = graph.neighbours(tokens[1]);
+							endTimeNeigh = System.nanoTime();
+
+							neighTotal += endTimeNeigh - startTimeNeigh;
+							numNeigh++;
 							StringBuffer buf = new StringBuffer();
 							for (String neigh : neighbours) {
 								buf.append(" " + neigh);
@@ -103,7 +164,15 @@ public class GraphTester
 					// remove vertex
 					case "RV":
 						if (tokens.length == 2) {
+							startTimeVertexR = System.nanoTime();
 							graph.removeVertex(tokens[1]);
+
+							endTimeVertexR = System.nanoTime();
+							lastVertexR = endTimeVertexR - startTimeVertexR;
+							if (firstVertexR == -1) 
+								firstVertexR = lastVertexR;
+							vertexTotalR += lastVertexR;
+							numVertexR++;
 						}
 						else {
 							System.err.println(lineNum + ": incorrect number of tokens.");
@@ -112,7 +181,15 @@ public class GraphTester
 					// remove edge
 					case "RE":
 						if (tokens.length == 3) {
+							startTimeEdgeR = System.nanoTime();
 							graph.removeEdge(tokens[1], tokens[2]);
+
+							endTimeEdgeR = System.nanoTime();
+							lastEdgeR = endTimeEdgeR - startTimeEdgeR;
+							if (firstEdgeR == -1) 
+								firstEdgeR = lastEdgeR;
+							edgeTotalR += lastEdgeR;
+							numEdgeR++;
 						}
 						else {
 							System.err.println(lineNum + ": incorrect number of tokens.");
@@ -121,7 +198,12 @@ public class GraphTester
 					// compute shortest path distance
 					case "S":
 						if (tokens.length == 3) {
+							startTimePath = System.nanoTime();
 							distanceOutWriter.println(tokens[1] + " " + tokens[2] + " " + graph.shortestPathDistance(tokens[1], tokens[2]));
+							endTimePath = System.nanoTime();
+
+							PathTotal += endTimePath - startTimePath;
+							numPath++;
 						}
 						else {
 							System.err.println(lineNum + ": incorrect number of tokens.");
@@ -149,6 +231,26 @@ public class GraphTester
 
 			lineNum++;
 		}
+
+
+		System.out.println("Average vertex time:   " + (vertexTotal / numVertex));
+		System.out.println("First vertex time:     " + firstVertex);
+		System.out.println("Last vertex time:      " + lastVertex);
+		System.out.println();
+		System.out.println("Average edge time:     " + (edgeTotal / numEdge));
+		System.out.println("First edge time:       " + firstEdge);
+		System.out.println("Last edge time:        " + lastEdge);
+		System.out.println();
+		System.out.println("Neighbours Average:    " + (neighTotal/numEdge));
+		System.out.println("Shortest Path Average: " + (PathTotal/numPath));
+		System.out.println();
+		System.out.println("Average vertex time:   " + (vertexTotalR / numVertexR));
+		System.out.println("First vertex time:     " + firstVertexR);
+		System.out.println("Last vertex time:      " + lastVertexR);
+		System.out.println();
+		System.out.println("Average edge time:     " + (edgeTotalR / numEdgeR));
+		System.out.println("First edge time:       " + firstEdgeR);
+		System.out.println("Last edge time:        " + lastEdgeR);
 
 	} // end of processOperations() 
 
